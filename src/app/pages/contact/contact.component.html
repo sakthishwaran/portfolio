@@ -1,0 +1,149 @@
+<main id="contact" #contactSection class="relative overflow-hidden py-12" >
+  <!-- Background glows -->
+  <!-- <div class="pointer-events-none absolute -top-16 -right-16 w-72 h-72 rounded-full bg-(--color-accent)/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-(--color-primary)/8 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-8 right-8 w-36 h-36 rounded-full bg-(--color-accent)/6 blur-2xl opacity-70"></div> -->
+
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="text-center mb-10">
+      <h2 [class.opacity-0]="!inView()" [class.opacity-100]="inView()" class="transition-all duration-700 ease-out text-3xl md:text-4xl lg:text-5xl font-extrabold">Get In Touch</h2>
+      <p class="mt-3 text-sm md:text-base text-(--color-secondary)">Let's build scalable web applications together. I'm currently available for Full Stack Development opportunities, freelance projects, and collaborations.</p>
+    </div>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+      <!-- Contact Info Card -->
+      <div
+        class="rounded-3xl border border-white/10 bg-white/30 backdrop-blur-xl p-6 shadow-xl transform transition-all duration-700"
+        [class.opacity-0]="!inView()"
+        [class.translate-x-8]="!inView()"
+        [class.opacity-100]="inView()"
+        [class.translate-x-0]="inView()"
+      >
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-xl font-semibold">Contact Information</h3>
+            <div class="mt-2 text-(--color-secondary)">Reach out for collaborations,<br> full-time roles.</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center rounded-full bg-white/60 px-3 py-1 text-sm font-medium">🟢 Available for Work</span>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 gap-4">
+          <div class="flex items-start gap-4">
+            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
+              <i class="pi pi-envelope text-(--color-accent) text-xl"></i>
+            </div>
+            <div>
+              <div class="text-xs text-(--color-secondary)">Email</div>
+              <div class="font-medium">{{ profile.contact.email }}</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
+              <i class="pi pi-phone text-(--color-accent) text-xl"></i>
+            </div>
+            <div>
+              <div class="text-xs text-(--color-secondary)">Phone</div>
+              <div class="font-medium">{{ profile.contact.phone }}</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
+              <i class="pi pi-map-marker text-(--color-accent) text-xl"></i>
+            </div>
+            <div>
+              <div class="text-xs text-(--color-secondary)">Location</div>
+              <div class="font-medium">{{ profile.contact.location }}</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
+              <i class="pi pi-briefcase text-(--color-accent) text-xl"></i>
+            </div>
+            <div>
+              <div class="text-xs text-(--color-secondary)">Current Role</div>
+              <div class="font-medium">{{ profile.title }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="mt-6 grid grid-cols-2 gap-3">
+          <div class="rounded-2xl border border-white bg-white/70 p-3 text-center">
+            <div class="text-sm text-(--color-secondary)">Experience</div>
+            <div class="font-semibold">2+ Years</div>
+          </div>
+          <div class="rounded-2xl border border-white bg-white/70 p-3 text-center">
+            <div class="text-sm text-(--color-secondary)">Projects</div>
+            <div class="font-semibold">15+</div>
+          </div>
+        </div> -->
+
+        <div class="mt-6 flex gap-3">
+          <a pButton
+            href="{{ profile.contact.linkedin }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            icon="pi pi-linkedin"
+            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
+          > <i class="pi pi-linkedin text-blue-600"></i> </a>
+
+          <a pButton
+            href="{{ profile.contact.github }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            icon="pi pi-github"
+            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
+          ><i class="pi pi-github text-red-600"></i> </a>
+
+          <a pButton
+            href="mailto:{{ profile.contact.email }}"
+            aria-label="Email"
+            icon="pi pi-envelope"
+            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
+          ><i class="pi pi-envelope text-green-600"></i> </a>
+
+          <a pButton
+            href="{{ profile.contact.resume }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download Resume"
+            icon="pi pi-file-pdf"
+            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
+          ><i class="pi pi-file-pdf text-red-600"></i> </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div
+        class="rounded-3xl border border-white/10 bg-white/30 backdrop-blur-xl p-6 shadow-xl transform transition-all duration-700"
+        [class.opacity-0]="!inView()"
+        [class.-translate-x-8]="!inView()"
+        [class.opacity-100]="inView()"
+        [class.translate-x-0]="inView()"
+      >
+        <h3 class="text-xl font-semibold">Send a Message</h3>
+        <p class="text-(--color-secondary) text-sm mt-1">I'll usually reply within 1-2 business days.</p>
+
+        <form (ngSubmit)="send()" class="mt-6 grid grid-cols-1 gap-4">
+          <input pInputText placeholder="Full Name" [(ngModel)]="name" name="name" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
+          <input pInputText placeholder="Email" [(ngModel)]="email" name="email" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
+          <input pInputText placeholder="Subject" [(ngModel)]="subject" name="subject" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
+          <textarea pInputTextarea rows="6" placeholder="Message" [(ngModel)]="message" name="message" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3"></textarea>
+
+          <div class="mt-2 flex items-center justify-end">
+            <button pButton type="submit" class="inline-flex items-center gap-2 rounded-xl bg-linear-to-b from-(--color-accent) to-(--color-danger) px-6 py-3 text-white font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+              <span>Send Message</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
