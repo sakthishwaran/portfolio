@@ -1,0 +1,47 @@
+<!--
+  Global decorative background.
+  Fixed behind the entire SPA so every routed page / section shares
+  the same continuous backdrop. Pure Tailwind utilities + CSS variables
+  (no images, no video) so it stays cheap to paint.
+
+  Layer order: base gradient -> blur glows -> animated blobs -> concentric rings -> dotted pattern
+-->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+
+  <!-- 1. Base gradient -->
+  <div class="absolute inset-0 bg-[var(--bg-primary)]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-secondary)]/[0.04] via-transparent to-[var(--color-accent)]/[0.03]"></div>
+
+  <!-- 2. Blur glows -->
+  <!-- Top-right accent glow -->
+  <div class="absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-[var(--color-accent)] opacity-[0.07] blur-[130px]"></div>
+  <!-- Bottom-right accent glow -->
+  <div class="absolute -bottom-36 -right-32 h-[520px] w-[520px] rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-[110px]"></div>
+  <!-- Top-left large gray glow -->
+  <div class="absolute -left-48 -top-48 h-[560px] w-[560px] rounded-full bg-[var(--color-secondary)] opacity-[0.10] blur-[140px]"></div>
+  <!-- Middle-left small blur circle -->
+  <div class="absolute left-[8%] top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-[var(--color-secondary)] opacity-[0.12] blur-3xl"></div>
+  <!-- Bottom-left accent gradient -->
+  <div class="absolute -bottom-40 -left-32 h-[480px] w-[480px] rounded-full bg-[var(--color-danger)] opacity-[0.06] blur-[120px]"></div>
+  <!-- Center light gray glow -->
+  <div class="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-secondary)] opacity-[0.05] blur-[130px]"></div>
+  <!-- Top-center soft radial blur -->
+  <div class="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[var(--color-surface)] opacity-[0.10] blur-[100px] dark:bg-[var(--color-secondary)]"></div>
+
+  <!-- 3. Animated blobs (slow float, 20s ease-in-out infinite) -->
+  <div class="absolute left-[15%] top-[22%] h-72 w-72 rounded-[42%_58%_63%_37%/41%_44%_56%_59%] bg-[var(--color-accent)] opacity-[0.05] blur-2xl animate-[float_20s_ease-in-out_infinite]"></div>
+  <div class="absolute right-[12%] top-[58%] h-56 w-56 rounded-[63%_37%_37%_63%/42%_49%_51%_58%] bg-[var(--color-secondary)] opacity-[0.06] blur-2xl animate-[float_20s_ease-in-out_infinite] [animation-delay:-7s]"></div>
+  <div class="absolute left-[46%] bottom-[8%] h-64 w-64 rounded-[37%_63%_56%_44%/49%_37%_63%_51%] bg-[var(--color-danger)] opacity-[0.05] blur-2xl animate-[float_20s_ease-in-out_infinite] [animation-delay:-14s]"></div>
+
+  <!-- 4. Concentric ring arcs (bottom-right) -->
+  <div class="absolute -bottom-20 -right-20">
+    <div class="h-72 w-72 rounded-full border border-[var(--color-accent)] opacity-[0.22]"></div>
+    <div class="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--color-accent)] opacity-[0.13]"></div>
+    <div class="absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--color-accent)] opacity-[0.07]"></div>
+  </div>
+
+  <!-- 5. Dotted patterns (opacity 10%) -->
+  <div class="absolute left-[6%] top-[14%] h-56 w-56 opacity-[0.10] [background-image:radial-gradient(circle,var(--color-secondary)_1.5px,transparent_1.5px)] [background-size:14px_14px]"></div>
+  <div class="absolute right-[8%] bottom-[10%] h-64 w-64 opacity-[0.10] [background-image:radial-gradient(circle,var(--color-secondary)_1.5px,transparent_1.5px)] [background-size:14px_14px]"></div>
+  <div class="absolute left-[4%] top-1/2 h-48 w-48 -translate-y-1/2 opacity-[0.10] [background-image:radial-gradient(circle,var(--color-secondary)_1.5px,transparent_1.5px)] [background-size:14px_14px]"></div>
+</div>

@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "./styles/theme.css";
+@import "./styles/variables.css";
+@import "./styles/primeng-overrides.css";
+@import "./styles/global.css";
+@import "primeicons/primeicons.css";
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Global offset to account for the fixed navbar so sections are not hidden behind it */
+:root {
+  --navbar-height: 64px;
+}
+
+body {
+  padding-top: var(--navbar-height);
+  scroll-padding-top: var(--navbar-height);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 72px;
+  }
+}

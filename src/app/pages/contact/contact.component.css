@@ -1,0 +1,8 @@
+:host { display: block; }
+
+input, textarea { width: 100%; }
+
+/* minor helpers for section */
+.contact-fade-in {
+	transition: opacity 0.6s ease, transform 0.6s ease;
+}

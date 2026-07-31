@@ -1,0 +1,41 @@
+<div class="relative mx-auto flex items-center justify-center
+            h-100 w-77.5
+            sm:h-120 sm:w-92.5
+            md:h-136.25 md:w-106.25
+            lg:h-127.5 lg:w-117.5">
+
+  <!-- Large faint circle behind the blob -->
+  <div class="pointer-events-none absolute inset-x-[-15%] inset-y-[-16%] rounded-full bg-gray-300 opacity-[0.18]"></div>
+
+  <!-- Blob: outer red border ring (now wraps the image shell as a child) -->
+  <div class="absolute inset-0 rounded-[70%_45%_50%_75%/65%100%_63%_70%] border-2 border-(--color-accent) bg-white shadow-[0_24px_64px_rgba(43,45,66,0.10)]">
+
+    <!-- Blob: image shell — nested inside the ring div, same blob radius -->
+    <div class="absolute inset-5 overflow-hidden rounded-[50%_45%_50%_55%/55%_50%_45%_50%] bg-[linear-gradient(180deg,rgba(248,248,248,0.95),rgba(225,232,237,0.85))]">
+        @if (imageUrl) {
+        <img
+          [src]="imageUrl"
+          [alt]="altText"
+          loading="eager"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover object-top select-none pointer-events-none transition-all duration-1000 ease-out"
+          [ngClass]="visible ? 'opacity-100 translate-y-0 scale-100 animate-[float_6s_ease-in-out_infinite]' : 'opacity-0 translate-y-10 scale-[0.95]'"
+          (load)="onImgLoad()"
+          (error)="onImgError()"
+        />
+      }
+    </div>
+
+  </div>
+
+  <!-- Decorative: large red circle (right side, ~15% from top, on the border ring) -->
+  <div class="absolute -right-3 top-[13%] z-10">
+    <span class="block h-11 w-11 rounded-full bg-(--color-accent) shadow-[0_8px_24px_rgba(239,35,60,0.4)] ring-4 ring-white"></span>
+  </div>
+
+  <!-- Decorative: small red dot (bottom-left, outside blob) -->
+  <div class="absolute -left-2 bottom-[20%] z-10">
+    <span class="block h-5 w-5 rounded-full bg-(--color-accent) opacity-90"></span>
+  </div>
+
+</div>

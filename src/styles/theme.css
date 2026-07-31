@@ -1,0 +1,72 @@
+:root {
+  /* Primary */
+  --color-primary: #2B2D42;
+  --color-secondary: #8D99AE;
+  --color-surface: #EDF2F4;
+  --color-accent: #EF233C;
+  --color-danger: #D90429;
+
+  /* Background */
+  --bg-primary: var(--color-surface);
+  --bg-secondary: #FFFFFF;
+  --bg-dark: var(--color-primary);
+
+  /* Text */
+  --text-primary: var(--color-primary);
+  --text-secondary: var(--color-secondary);
+  --text-light: var(--color-surface);
+
+  /* Borders */
+  --border-light: #DCE3E8;
+  --border-dark: var(--color-primary);
+
+  /* Cards */
+  --card-bg: var(--bg-secondary);
+  --card-hover: #F8FAFB;
+
+  /* Buttons */
+  --button-primary: var(--color-danger);
+  --button-hover: var(--color-accent);
+  --button-text: #FFFFFF;
+
+  /* Links */
+  --link-color: var(--color-accent);
+  --link-hover: var(--color-danger);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(43,45,66,.08);
+  --shadow-md: 0 8px 24px rgba(43,45,66,.12);
+  --shadow-lg: 0 16px 40px rgba(43,45,66,.18);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+
+  /* Transition */
+  --transition-fast: .2s ease;
+  --transition-normal: .35s ease;
+  --transition-slow: .5s ease;
+}
+
+/* Dark theme mapping per design guidelines */
+[data-theme="dark"] {
+  --bg-primary: #2B2D42;          /* Background */
+  --bg-secondary: #343750;        /* Surface */
+  --card-bg: #3B3E59;             /* Card */
+
+  --text-primary: #EDF2F4;        /* Primary text */
+  --text-secondary: #C8D0D8;      /* Secondary text */
+
+  --border-light: rgba(141,153,174,.2);
+
+  --button-primary: #D90429;
+  --button-hover: #EF233C;
+
+  --link-color: #EF233C;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.25);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.35);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,.45);
+}
