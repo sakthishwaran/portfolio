@@ -10,7 +10,7 @@
       <p class="mt-3 text-sm md:text-base text-(--color-secondary)">Let's build scalable web applications together. I'm currently available for Full Stack Development opportunities, freelance projects, and collaborations.</p>
     </div>
 
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+    <section class="grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-8 items-center">
       <!-- Contact Info Card -->
       <div
         class="rounded-3xl border border-white/10 bg-white/30 backdrop-blur-xl p-6 shadow-xl transform transition-all duration-700"
@@ -40,7 +40,7 @@
             </div>
           </div>
 
-          <div class="flex items-start gap-4">
+          <!-- <div class="flex items-start gap-4">
             <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
               <i class="pi pi-phone text-(--color-accent) text-xl"></i>
             </div>
@@ -48,7 +48,7 @@
               <div class="text-xs text-(--color-secondary)">Phone</div>
               <div class="font-medium">{{ profile.contact.phone }}</div>
             </div>
-          </div>
+          </div> -->
 
           <div class="flex items-start gap-4">
             <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
@@ -120,7 +120,7 @@
       </div>
 
       <!-- Contact Form -->
-      <div
+      <!-- <div
         class="rounded-3xl border border-white/10 bg-white/30 backdrop-blur-xl p-6 shadow-xl transform transition-all duration-700"
         [class.opacity-0]="!inView()"
         [class.-translate-x-8]="!inView()"
@@ -130,20 +130,24 @@
         <h3 class="text-xl font-semibold">Send a Message</h3>
         <p class="text-(--color-secondary) text-sm mt-1">I'll usually reply within 1-2 business days.</p>
 
-        <form (ngSubmit)="send()" class="mt-6 grid grid-cols-1 gap-4">
-          <input pInputText placeholder="Full Name" [(ngModel)]="name" name="name" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
-          <input pInputText placeholder="Email" [(ngModel)]="email" name="email" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
-          <input pInputText placeholder="Subject" [(ngModel)]="subject" name="subject" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
-          <textarea pInputTextarea rows="6" placeholder="Message" [(ngModel)]="message" name="message" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3"></textarea>
+        <form [formGroup]="form" (ngSubmit)="send()" class="mt-6 grid grid-cols-1 gap-4">
+          <input pInputText placeholder="Full Name" formControlName="fullName" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
+          <div *ngIf="form.get('fullName')?.touched && form.get('fullName')?.invalid" class="text-red-500 text-sm">Full name is required.</div>
+
+          <input pInputText placeholder="Email" formControlName="email" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3" />
+          <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-red-500 text-sm">A valid email is required.</div>
+          <textarea pInputTextarea rows="6" placeholder="Message" formControlName="message" class="rounded-xl border border-(--color-border) focus:border-(--color-accent) focus:ring-4 focus:ring-(--color-accent)/20 p-3"></textarea>
+          <div *ngIf="form.get('message')?.touched && form.get('message')?.invalid" class="text-red-500 text-sm">Message is required.</div>
 
           <div class="mt-2 flex items-center justify-end">
-            <button pButton type="submit" class="inline-flex items-center gap-2 rounded-xl bg-linear-to-b from-(--color-accent) to-(--color-danger) px-6 py-3 text-white font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <span>Send Message</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <button pButton type="submit" [disabled]="form.invalid || isLoading()" [attr.aria-busy]="isLoading()" class="inline-flex items-center gap-2 rounded-xl bg-linear-to-b from-(--color-accent) to-(--color-danger) px-6 py-3 text-white font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+              <i [class]="isLoading() ? 'pi pi-spin pi-spinner' : 'pi pi-send'" aria-hidden="true"></i>
+              <span *ngIf="!isLoading()">Send Message</span>
+              <span *ngIf="isLoading()">Sending...</span>
             </button>
           </div>
         </form>
-      </div>
+      </div> -->
     </section>
   </div>
 </main>

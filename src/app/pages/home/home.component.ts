@@ -17,11 +17,12 @@ import { ScrollSpyService } from '../../shared/services/scroll-spy.service';
 import { AboutComponent } from "../about/about.component";
 import { SkillsComponent } from "../skills/skills.component";
 import { ContactComponent } from "../contact/contact.component";
+import { Toast } from "primeng/toast";
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [CommonModule, ButtonModule, InputTextModule, TextareaModule, NavbarComponent, FooterComponent, ProjectCardComponent, InViewportDirective, SkillBarComponent, HeroImageComponent, TypingComponent, CtaButtonsComponent, SocialLinksComponent, AboutComponent, SkillsComponent, ContactComponent],
+  imports: [CommonModule, ButtonModule, InputTextModule, TextareaModule, NavbarComponent, FooterComponent, ProjectCardComponent, InViewportDirective, SkillBarComponent, HeroImageComponent, TypingComponent, CtaButtonsComponent, SocialLinksComponent, AboutComponent, SkillsComponent, ContactComponent, Toast],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
