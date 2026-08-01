@@ -1,0 +1,77 @@
+/* PrimeNG overrides to align with design system */
+:root {
+  --primeng-primary: var(--color-primary);
+  --primeng-highlight: var(--color-accent);
+  --primeng-surface: var(--card-bg);
+  --primeng-radius: var(--radius-md);
+}
+
+/* Buttons */
+.p-button {
+  border-radius: var(--primeng-radius) !important;
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.p-button.p-button-danger,
+.p-button.p-button-danger:enabled {
+  background: var(--button-primary) !important;
+  color: var(--button-text) !important;
+  border: none !important;
+}
+
+.p-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Inputs */
+.p-inputtext, textarea.p-inputtextarea, .p-textarea {
+  background: var(--surface) !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: calc(var(--radius-sm) / 1.5) !important;
+}
+
+.p-inputtext:focus, textarea.p-inputtextarea:focus, .p-textarea:focus {
+  outline: none !important;
+  box-shadow: 0 4px 18px rgba(239,35,60,0.08) !important;
+  border-color: var(--link-color) !important;
+}
+
+/* Cards */
+.p-card {
+  border-radius: var(--radius-md) !important;
+  background: var(--card-bg) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* Toast */
+.p-toast .p-toast-message {
+  border-radius: calc(var(--radius-sm) / 1.2) !important;
+}
+
+/* Toast color mapping to portfolio theme */
+.p-toast .p-toast-message.p-toast-message-success {
+  background: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-left: 4px solid var(--color-accent) !important;
+}
+.p-toast .p-toast-message.p-toast-message-success .p-toast-summary {
+  font-weight: 600;
+}
+.p-toast .p-toast-message.p-toast-message-warn {
+  background: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-left: 4px solid var(--color-accent) !important;
+}
+.p-toast .p-toast-message.p-toast-message-error {
+  background: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-left: 4px solid var(--color-danger) !important;
+}
+.p-toast .p-toast-message .p-toast-icon {
+  color: var(--color-accent) !important;
+}
+
+/* Ensure focus/keyboard visibility */
+.p-toast .p-toast-message:focus {
+  outline: 2px solid rgba(239,35,60,0.14) !important;
+}

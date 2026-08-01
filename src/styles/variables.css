@@ -1,0 +1,7 @@
+:root {
+  /* Semantic aliases for components */
+  --bg: var(--bg-primary);
+  --surface: var(--card-bg);
+  --muted: var(--text-secondary);
+  --fg: var(--text-primary);
+}

@@ -1,0 +1,45 @@
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import type { WritableSignal } from '@angular/core';
+
+export interface SkillItem {
+  id: number;
+  name: string;
+  icon?: string;
+  percentage: number;
+  animatedPercentage: WritableSignal<number>;
+}
+
+@Component({
+  selector: 'app-skill-bar',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <article
+      class="flex h-full min-w-0 items-center rounded-2xl backdrop-blur-xl shadow-lg p-3 md:p-4 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+      role="group"
+      aria-label="Skill card"
+    >
+      <div class="flex w-full min-w-0 items-center gap-3 md:gap-4">
+        <div class="flex h-10 w-10 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-lg bg-white/80 dark:bg-white/5 shadow-sm transition-transform duration-300 group-hover:scale-105">
+          <span class="text-lg md:text-xl">{{ skill.icon || '💡' }}</span>
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="flex items-baseline justify-between gap-2">
+            <div class="truncate text-sm md:text-base lg:text-lg font-semibold">{{ skill.name }}</div>
+            <div class="shrink-0 text-xs md:text-sm font-mono text-(--color-primary)">{{ skill.animatedPercentage() | number:'1.0-0' }}%</div>
+          </div>
+          <div class="mt-2 md:mt-3 h-2.5 md:h-3 w-full rounded-full bg-(--color-surface) overflow-hidden">
+            <div
+              class="h-full rounded-full bg-linear-to-r from-(--color-danger) to-(--color-secondary) shadow-md transition-all duration-1500 ease-out"
+              [style.width.%]="skill.animatedPercentage()"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  `,
+})
+export class SkillBarComponent {
+  @Input({ required: true }) skill!: SkillItem;
+}

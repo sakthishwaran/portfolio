@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+<main class=" min-h-screen">
+  <section id="home" class="relative z-10 min-h-screen px-4 sm:px-8 lg:px-12" inViewport>
+
+    <div class="relative z-10 mx-auto flex max-w-6xl flex-col items-center justify-between gap-10 py-24 lg:flex-row lg:gap-16 lg:py-0 lg:min-h-screen">
+
+      <!-- LEFT: Profile Image -->
+      <div class="relative flex w-full shrink-0 items-center justify-center lg:w-[45%]">
+        <app-hero-image [imageUrl]="profile.contact.image!" [altText]="'Portrait of ' + profile.fullName" [showAnimation]="true"></app-hero-image>
+      </div>
+
+
+      <!-- RIGHT: Text Content -->
+      <div class="flex w-full min-w-0 flex-col items-center gap-5 text-center lg:w-auto lg:flex-1 lg:items-start lg:text-left">
+
+        <p class="text-[15px] font-semibold text-(--color-accent)" inViewport>Hello, I'm</p>
+
+        <h1 class="-mt-1 text-5xl font-black leading-[1.05] tracking-tight md:text-[60px] xl:text-[55px]" inViewport>
+          <span class="text-(--text-primary)">SAKTHIS</span><span class="text-(--color-accent)">HWARAN A</span>
+        </h1>
+
+        <div class="flex flex-col items-center gap-2 lg:items-start" inViewport>
+          <span class="text-[13px] font-medium uppercase tracking-[0.42em] text-(--color-secondary)">{{ profile.title }}</span>
+          <span class="h-0.75 w-14 rounded-full bg-(--color-accent)"></span>
+        </div>
+
+        <div class="text-lg font-medium text-(--text-primary)" inViewport>
+          <app-typing [phrases]="typingPhrases"></app-typing>
+        </div>
+
+        <p class="max-w-lg text-[15px] leading-relaxed text-(--color-secondary)" inViewport>{{ profile.summary }}</p>
+
+        <div class="w-full max-w-sm" inViewport>
+          <app-cta-buttons [resumeUrl]="profile.contact?.resume ?? 'assets/resume.pdf'" (viewProjects)="navigateTo('projects')"></app-cta-buttons>
+        </div>
+
+        <div inViewport>
+          <app-social-links [github]="profile.contact.github" [linkedin]="profile.contact.linkedin" [email]="profile.contact.email"></app-social-links>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section id="about" class="relative z-10 container mx-auto px-6 py-20 lg:px-12 reveal" inViewport>
+    <app-about></app-about>
+  </section>
+
+
+  <section id="skills" class="relative z-10 container mx-auto px-6 py-10 lg:px-12 reveal" inViewport>
+    <app-skills></app-skills>
+  </section>
+  <section id="projects" class="relative z-10 container mx-auto px-6 py-10 lg:px-12 reveal" inViewport>
+    <h2 class="text-2xl font-semibold mb-4">Highlighted Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger" inViewport>
+      @for (p of profile.projects; track p.id) {
+        <app-project-card [project]="p"></app-project-card>
+      }
+    </div>
+  </section>
+
+
+
+  <section id="contact" class="relative z-10 container mx-auto px-6 py-10 lg:px-12 reveal" inViewport>
+    <app-contact></app-contact>
+  </section>
+  <app-footer></app-footer>
+</main>

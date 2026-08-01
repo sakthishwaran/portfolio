@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+/* Respect reduced-motion preference: freeze the floating blob animations */
+@media (prefers-reduced-motion: reduce) {
+  :host ::ng-deep * {
+    animation: none !important;
+  }
+}
+

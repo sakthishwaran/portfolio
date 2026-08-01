@@ -1,0 +1,14 @@
+<article class="bg-white/30  p-4 rounded-2xl shadow-md hover:shadow-xl transition-shadow">
+  <img [src]="project.image" alt="{{project.name}}" title="{{project.name}}" loading="lazy" (error)="onImgError($event)" class="w-full h-36 object-cover rounded-lg mb-3" />
+  <h3 class="font-semibold text-lg mb-1">{{ project.name }}</h3>
+  <p class="text-sm   mb-3">{{ project.description }}</p>
+  <div class="flex flex-wrap gap-2 mb-3">
+    @for (t of project.technologies; track $index) {
+      <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded">{{ t }}</span>
+    }
+  </div>
+  <!-- <div class="flex gap-3">
+    <button pButton type="button" label="Live" class="p-button-outlined">Live</button>
+    <button pButton type="button" label="Repo" class="p-button-text">Repo</button>
+  </div> -->
+</article>
