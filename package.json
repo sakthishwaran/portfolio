@@ -7,8 +7,9 @@
     "node": ">=22"
   },
   "scripts": {
+    "ng": "ng",
     "start": "ng serve",
-    "build": "npx ng build",
+    "build": "npx ng build --configuration production",
     "watch": "npx ng build --watch --configuration development",
     "test": "ng test"
   },
