@@ -1,13 +1,18 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import { routes } from './app.routes';
-
-import { providePrimeNG } from 'primeng/config';
+import { providePrimeNG } from 'primeng/config'
 import { MessageService } from 'primeng/api';
 import Aura from '@primeuix/themes/aura';
+
+import { environment } from '../environments/environment';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,10 +24,9 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Aura,
       },
+      license: environment.primeNGLicenseKey,
     }),
-    // Enable zoneless change detection for improved performance
     provideZonelessChangeDetection(),
-    // Provide MessageService at the application level so root-scoped services can inject it
     MessageService,
   ],
 };
