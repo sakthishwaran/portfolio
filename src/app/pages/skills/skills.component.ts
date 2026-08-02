@@ -24,16 +24,16 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
   skills = signal<SkillItem[]>(
     this.profile.skills.map((name, i) => {
       const mapping: Record<string, number> = {
-        Angular: 95,
-        'TypeScript': 90,
-        JavaScript: 85,
-        'Node.js': 90,
-        'Hapi.js': 80,
-        Laravel: 95,
+        Angular: 50,
+        'TypeScript': 56,
+        JavaScript: 70,
+        'Node.js': 45,
+        'Hapi.js': 45,
+        Laravel: 80,
         PHP: 80,
-        PostgreSQL: 85,
-        MySQL: 80,
-        'Tailwind CSS': 80,
+        PostgreSQL: 33,
+        MySQL: 78,
+        'Tailwind CSS': 63,
       };
       const percentage = mapping[name] ?? Math.max(60, 90 - i * 5);
       return {
