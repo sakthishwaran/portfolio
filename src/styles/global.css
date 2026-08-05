@@ -142,7 +142,7 @@ a:hover { color: var(--link-hover); }
 
 /* Reusable card utility classes (alias to premium-card behavior)
    Use these on any card to get project-card identical hover and focus behavior */
-.card-base { @apply ; }
+/* .card-base {  } */
 .card-glass { /* semantic alias for glass look */ }
 .card-transition { transition: transform 300ms ease-out, box-shadow 300ms ease-out, border-color 300ms ease-out; }
 .card-hover:hover, .card-hover:focus-within { transform: translateY(-8px) scale(1.02); }
