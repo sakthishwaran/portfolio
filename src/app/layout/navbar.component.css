@@ -70,8 +70,9 @@ a:hover {
 
 /* Theme toggle pill */
 app-theme-toggle{display:inline-flex}
-app-theme-toggle .theme-toggle{background:var(--glass-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--glass-border);padding:6px;border-radius:999px;transition:transform .25s ease, box-shadow .25s ease;color:var(--navbar-text)}
-app-theme-toggle .theme-toggle:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+app-theme-toggle .glass-btn{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);transition:transform .25s ease, box-shadow .25s ease;color:var(--navbar-text)}
+app-theme-toggle .glass-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 26px rgba(239,68,68,0.08);}
+app-theme-toggle .glass-btn:focus{outline:none; box-shadow:0 0 0 4px rgba(239,68,68,0.12)}
 
 @media (max-width: 768px){
   .site-nav .nav-inner{padding-inline:16px}

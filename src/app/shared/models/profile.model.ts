@@ -27,5 +27,6 @@ export interface Profile {
   contact: ContactInfo;
   skills: string[];
   professionalSkills: string[];
+  highlights?: string[];
   projects: Project[];
 }

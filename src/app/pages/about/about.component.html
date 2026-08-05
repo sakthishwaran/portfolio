@@ -1,48 +1,57 @@
-<main class=" mx-auto ">
+<main class="mx-auto px-4" #aboutRoot>
   <h2 class="text-3xl font-bold mb-4">About Me</h2>
-    <p class="text-secondary mb-4">{{ profile.aboutSummary }}</p>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-white/30 rounded-2xl shadow-xl p-6">
-        <h3 class="font-semibold mb-2">Experience</h3>
-        <ul class="list-disc pl-5 text-sm text-secondary">
-          <li>
-            <strong>Frontend Development:</strong> Creating responsive, accessible, and modern user interfaces with Angular,
-            TypeScript, Tailwind CSS, and PrimeNG, focusing on clean design and excellent user experience.
-          </li>
-          <li>
-            <strong>Backend Development:</strong> Building secure and scalable REST APIs using Node.js, Hapi.js, and Laravel,
-            with a strong emphasis on authentication, authorization, and maintainable architecture.
-          </li>
-          <li>
-            <strong>Enterprise Solutions:</strong> Developing ERP and CRM platforms with multi-tenant architecture, RBAC,
-            payment gateway integrations, communication modules, and business workflow automation.
-          </li>
-          <li>
-            <strong>Database & Cloud:</strong> Designing optimized PostgreSQL and MySQL databases, improving query performance,
-            and integrating cloud services such as AWS S3, Firebase, SMS, Email, and WhatsApp APIs.
-          </li>
-        </ul>
-      </div>
-      <div class="bg-white/30 rounded-2xl shadow-xl p-6">
-        <h3 class="font-semibold mb-2">Education & Achievements</h3>
-        <div class="space-y-4 text-sm text-secondary">
-          <div>
-            <h4 class="font-semibold mb-1">🎓 Education</h4>
-            <p class="font-medium">B.E. Computer Science and Engineering</p>
-            <p>Anna University | 2023</p>
-            <p class="mt-1"><strong>CGPA:</strong> 8.0 / 10</p>
-          </div>
+  <p class="text-secondary mb-6">{{ profile.aboutSummary }}</p>
 
-          <div>
-            <h4 class="font-semibold mb-1">🏆 Achievements</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>🥇 <strong>First Prize</strong> in the <strong>YUVA Entrepreneurship Programme</strong> for developing the <strong>Best Project</strong>.</li>
-              <li>🎓 Completed an <strong>8-week Full Stack Development Program</strong> specializing in Angular and Node.js.</li>
-              <li>💻 Built enterprise-grade <strong>ERP & CRM applications</strong> using Angular, Node.js, PostgreSQL, and modern web technologies.</li>
-              <li>🚀 Passionate about continuous learning and delivering scalable, high-performance software solutions.</li>
-            </ul>
-          </div>
+  <div class="grid md:grid-cols-1 gap-6 items-start">
+    <!-- <div>
+      <div class="image-wrap relative overflow-hidden rounded-lg mb-4 h-64">
+        <img src="/images/profile.jpg" alt="Profile" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="flex gap-3 flex-wrap">
+        <div class="mini-card premium-card p-3 text-center">
+          <div class="text-2xl font-extrabold">2+</div>
+          <div class="text-xs text-(--color-secondary)">Years Experience</div>
+        </div>
+        <div class="mini-card premium-card p-3 text-center">
+          <div class="text-2xl font-extrabold">15+</div>
+          <div class="text-xs text-(--color-secondary)">Projects</div>
+        </div>
+        <div class="mini-card premium-card p-3 text-center">
+          <div class="text-2xl font-extrabold">10+</div>
+          <div class="text-xs text-(--color-secondary)">Technologies</div>
+        </div>
+        <div class="mini-card premium-card p-3 text-center">
+          <div class="text-2xl font-extrabold">100%</div>
+          <div class="text-xs text-(--color-secondary)">Responsive</div>
         </div>
       </div>
+    </div> -->
+
+    <div>
+      <article class="premium-card p-6">
+        <h3 class="font-semibold mb-2">Highlights</h3>
+        <div class="flex flex-wrap gap-2 mb-4">
+          @for (h of (profile.highlights ?? []); track $index) {
+            <span class="tech-chip">✔ {{ h }}</span>
+          }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="font-semibold mb-2">Experience</h4>
+            <ul class="list-disc pl-5 space-y-2 text-sm text-(--color-secondary)">
+              <li><strong>Frontend Development:</strong> Creating responsive, accessible, and modern user interfaces with Angular, TypeScript, Tailwind CSS, and PrimeNG, focusing on clean design and excellent user experience.</li>
+              <li><strong>Backend Development:</strong> Building secure and scalable REST APIs using Node.js, Hapi.js, and Laravel, with a strong emphasis on authentication, authorization, and maintainable architecture.</li>
+              <li><strong>Enterprise Solutions:</strong> Developing ERP and CRM platforms with multi-tenant architecture, RBAC, payment gateway integrations, communication modules, and business workflow automation.</li>
+              <li><strong>Database & Cloud:</strong> Designing optimized PostgreSQL and MySQL databases, improving query performance, and integrating cloud services such as AWS S3, Firebase, SMS, Email, and WhatsApp APIs.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">Education</h4>
+            <p class="text-(--color-secondary) text-sm">B.E. Computer Science and Engineering — Anna University</p>
+          </div>
+        </div>
+      </article>
     </div>
+  </div>
 </main>

@@ -12,26 +12,17 @@
 
     <section class="grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-8 items-center">
       <!-- Contact Info Card -->
-      <div
-        class="rounded-3xl border border-white/10 bg-white/30 backdrop-blur-xl p-6 shadow-xl transform transition-all duration-700"
-        [class.opacity-0]="!inView()"
-        [class.translate-x-8]="!inView()"
-        [class.opacity-100]="inView()"
-        [class.translate-x-0]="inView()"
-      >
+      <div class="premium-card p-6">
         <div class="flex items-start justify-between gap-4">
           <div>
             <h3 class="text-xl font-semibold">Contact Information</h3>
-            <div class="mt-2 text-(--color-secondary)">Reach out for collaborations,<br> full-time roles.</div>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="inline-flex items-center rounded-full bg-white/60 px-3 py-1 text-sm font-medium">🟢 Available for Work</span>
+            <div class="mt-2 text-(--color-secondary)">Reach out for collaborations, full-time roles, or freelance work.</div>
           </div>
         </div>
 
         <div class="mt-6 grid grid-cols-1 gap-4">
           <div class="flex items-start gap-4">
-            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
+            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/10 text-(--color-primary) card-icon">
               <i class="pi pi-envelope text-(--color-accent) text-xl"></i>
             </div>
             <div>
@@ -51,7 +42,7 @@
           </div> -->
 
           <div class="flex items-start gap-4">
-            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
+            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary) card-icon">
               <i class="pi pi-map-marker text-(--color-accent) text-xl"></i>
             </div>
             <div>
@@ -61,7 +52,7 @@
           </div>
 
           <div class="flex items-start gap-4">
-            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary)">
+            <div class="h-12 w-12 flex items-center justify-center rounded-lg bg-white/50 text-(--color-primary) card-icon">
               <i class="pi pi-briefcase text-(--color-accent) text-xl"></i>
             </div>
             <div>
@@ -83,35 +74,21 @@
         </div> -->
 
         <div class="mt-6 flex gap-3">
-          <a pButton
-            href="{{ profile.contact.linkedin }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
-          > <i class="pi pi-linkedin text-blue-600"></i> </a>
+          <a href="{{ profile.contact.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="glass-btn h-14 w-14">
+            <i class="pi pi-linkedin text-blue-600"></i>
+          </a>
 
-          <a pButton
-            href="{{ profile.contact.github }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
-          ><i class="pi pi-github text-red-600"></i> </a>
+          <a href="{{ profile.contact.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="glass-btn h-14 w-14">
+            <i class="pi pi-github text-(--color-primary)"></i>
+          </a>
 
-          <a pButton
-            href="mailto:{{ profile.contact.email }}"
-            aria-label="Email"
-            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
-          ><i class="pi pi-envelope text-green-600"></i> </a>
+          <a href="mailto:{{ profile.contact.email }}" aria-label="Email" class="glass-btn h-14 w-14">
+            <i class="pi pi-envelope text-(--color-accent)"></i>
+          </a>
 
-          <a pButton
-            href="{{ profile.contact.resume }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download Resume"
-            class="p-button-text h-14 w-14 rounded-full flex items-center justify-center border border-(--color-secondary) bg-white/80 backdrop-blur-xl text-(--color-primary) shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-(--color-accent) hover:bg-(--color-accent) hover:text-white hover:shadow-[0_0_25px_rgba(239,35,60,0.35)] focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
-          ><i class="pi pi-file-pdf text-red-600"></i> </a>
+          <a href="{{ profile.contact.resume }}" target="_blank" rel="noopener noreferrer" aria-label="Download Resume" class="glass-btn h-14 w-14">
+            <i class="pi pi-file-pdf text-red-600"></i>
+          </a>
         </div>
       </div>
 

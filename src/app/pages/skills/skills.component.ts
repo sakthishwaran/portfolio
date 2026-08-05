@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild, signal, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild, signal, WritableSignal, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkillBarComponent, SkillItem } from '../../shared/components/skill-bar.component';
 import { PROFILE } from '../../shared/constants/mock-data';
@@ -48,7 +48,7 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
 
   private observer?: IntersectionObserver;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone, private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(() => {
@@ -57,6 +57,10 @@ export class SkillsComponent implements AfterViewInit, OnDestroy {
           if (entry.isIntersecting && !this.animated) {
             this.animated = true;
             this.animateAll();
+            // mark the grid to reveal children with stagger
+            try {
+              this.renderer?.addClass(this.skillsSection.nativeElement, 'in-view');
+            } catch {}
             if (this.observer) {
               this.observer.disconnect();
             }

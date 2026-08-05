@@ -9,3 +9,20 @@
   }
 }
 
+/* Canvas layer should not capture pointer events and stays behind content */
+:host canvas {
+  pointer-events: none;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+@keyframes float {
+  0% { transform: translate3d(0, -6px, 0) rotate(0deg); }
+  50% { transform: translate3d(0, 6px, 0) rotate(0.2deg); }
+  100% { transform: translate3d(0, -6px, 0) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+

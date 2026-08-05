@@ -1,0 +1,214 @@
+:host { display: block; }
+
+/* Theme tokens (fall back to sensible values) */
+:host {
+	--accent: var(--color-accent, #ef4444);
+	--primary: var(--color-primary, #1f2937);
+	--glass-bg: rgba(255,255,255,0.06);
+	--glass-border: rgba(255,255,255,0.08);
+	--reveal-delay: 0ms;
+	--mx: 50%;
+	--my: 50%;
+	--spot-opacity: 0;
+}
+
+/* Base card glass + layout */
+.project-card {
+	background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid var(--glass-border);
+	box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+	transition: box-shadow 400ms ease, transform 400ms ease, border-color 400ms ease;
+	transform-origin: center;
+	will-change: transform, opacity;
+	opacity: 0;
+	transform: translateY(40px) scale(0.95);
+	/* stagger delay set from component via --reveal-delay */
+	transition-property: opacity, transform;
+	transition-duration: 600ms;
+	transition-delay: var(--reveal-delay);
+	position: relative; /* enable stacking context for children */
+}
+
+/* When observed in viewport */
+:host(.in-view) .project-card {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
+/* Image area */
+.image-wrap { position: relative; z-index: 0; }
+.project-image {
+	border-radius: 0.5rem;
+	transform-origin: center;
+	transform: scale(0.995);
+	transition: transform 600ms cubic-bezier(.2,.9,.2,1), filter 600ms ease;
+	opacity: 0;
+	z-index: 0;
+}
+
+:host(.img-loaded) .project-image { opacity: 1; }
+
+/* Gradient overlay above the image */
+.gradient-overlay {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: linear-gradient(180deg, rgba(255,255,255,0) 10%, rgba(239,68,68,0.08) 55%, rgba(31,41,55,0.06) 100%);
+	opacity: 0.1;
+	transition: opacity 400ms ease;
+	z-index: 1; /* ensure overlay sits above image but behind content */
+}
+
+/* Spotlight following cursor (desktop only) */
+@media (pointer: fine) {
+	.spotlight {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 380px;
+		height: 380px;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+		mix-blend-mode: screen;
+		filter: blur(30px);
+		background: radial-gradient(closest-side at var(--mx) var(--my), rgba(255,255,255,0.18), rgba(255,255,255,0) 35%);
+		opacity: 0;
+		transition: opacity 350ms ease, transform 350ms ease;
+		will-change: transform, opacity;
+		z-index: 2;
+	}
+	:host(.img-loaded) .spotlight { opacity: var(--spot-opacity, 0); }
+}
+
+/* Hover / focus styles (also apply on keyboard focus) */
+:host(:hover) .project-card,
+:host(:focus-within) .project-card {
+	transform: translateY(-10px) scale(1.02);
+	box-shadow: 0 20px 40px rgba(15,23,42,0.18), 0 4px 12px rgba(239,68,68,0.06);
+	border-color: rgba(239,68,68,0.22);
+	filter: brightness(1.03); /* increase card brightness without lowering text contrast */
+}
+
+:host(:hover) .project-image,
+:host(:focus-within) .project-image {
+	transform: scale(1.08) translateZ(0);
+	filter: brightness(1.04) saturate(1.02);
+}
+
+:host(:hover) .gradient-overlay,
+:host(:focus-within) .gradient-overlay {
+	opacity: 0.35;
+}
+
+/* Title / description transitions */
+.project-title { transition: color 250ms ease, letter-spacing 250ms ease; color: var(--color-primary, var(--primary)); }
+.project-desc { transition: color 300ms ease; color: var(--color-secondary, #6b7280); }
+
+:host(:hover) .project-title,
+:host(:focus-within) .project-title { color: var(--color-accent, var(--accent)); letter-spacing: 0.5px; }
+
+/* Keep description fully visible and high contrast on hover */
+:host(:hover) .project-desc,
+:host(:focus-within) .project-desc { color: var(--color-secondary, #6b7280); }
+
+/* Tech chips: modern glassmorphism pills (light & dark) */
+.tech-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem; /* reserved for optional icons */
+	padding: 0.35rem 0.75rem;
+	font-weight: 500;
+	font-size: 0.8125rem; /* ~13px */
+	line-height: 1;
+	border-radius: 9999px; /* rounded-full */
+	white-space: nowrap;
+	background: color-mix(in srgb, var(--color-primary, #1f2937) 6%, white 94%); /* subtle light glass */
+	border: 1px solid color-mix(in srgb, var(--color-secondary, #6b7280) 20%, transparent);
+	color: var(--color-primary, #1f2937);
+	box-shadow: 0 2px 6px color-mix(in srgb, var(--color-primary, #1f2937) 6%, transparent);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	transition: transform 260ms ease-out, border-color 260ms ease-out, background-color 260ms ease-out, color 260ms ease-out, box-shadow 260ms ease-out;
+	will-change: transform, box-shadow;
+	z-index: 6; /* sit above overlays */
+}
+
+/* Hover/focus: subtle lift, accent border & text, soft colored glow */
+:host(:hover) .tech-chip,
+:host(:focus-within) .tech-chip {
+	transform: translateY(-2px) scale(1.03);
+	border-color: color-mix(in srgb, var(--color-accent, #ef4444) 80%, transparent);
+	color: var(--color-accent, #ef4444);
+	background: color-mix(in srgb, var(--color-accent, #ef4444) 6%, white 94%);
+	box-shadow: 0 8px 22px color-mix(in srgb, var(--color-accent, #ef4444) 10%, transparent);
+}
+
+/* Dark mode: darker translucent surface, light text, subtle borders */
+:host-context(.dark) .tech-chip {
+	background: color-mix(in srgb, rgba(255,255,255,0.03) 6%, rgba(20,20,20,0.5) 94%);
+	border: 1px solid color-mix(in srgb, var(--color-secondary, #6b7280) 18%, transparent);
+	color: #f8fafc; /* gray-50 */
+	box-shadow: 0 4px 12px color-mix(in srgb, rgba(0,0,0,0.35) 10%, transparent);
+}
+
+/* Dark mode hover: accent border + accent text, soft glass highlight */
+:host-context(.dark) :host(:hover) .tech-chip,
+:host-context(.dark) :host(:focus-within) .tech-chip {
+	border-color: var(--color-accent, #ef4444);
+	color: var(--color-accent, #ef4444);
+	background: color-mix(in srgb, var(--color-accent, #ef4444) 6%, rgba(255,255,255,0.02) 94%);
+	box-shadow: 0 10px 26px color-mix(in srgb, var(--color-accent, #ef4444) 10%, transparent);
+}
+
+/* Floating inner glow border */
+.project-card::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	border-radius: inherit;
+	box-shadow: 0 0 48px rgba(239,68,68,0);
+	transition: box-shadow 400ms ease;
+	z-index: 0; /* keep glow behind content */
+}
+
+:host(:hover) .project-card::after,
+:host(:focus-within) .project-card::after { box-shadow: 0 0 48px rgba(239,68,68,0.18); }
+
+/* Ensure equal card heights and stable layout */
+.project-card { display: flex; flex-direction: column; height: 100%; }
+.image-wrap { flex: 0 0 auto; }
+.project-title, .project-desc, .tech-list { flex: 0 0 auto; position: relative; z-index: 5; }
+
+/* Dark mode tweaks */
+.project-title { color: var(--color-primary, var(--primary)); }
+.project-desc { color: var(--color-secondary, #6b7280); }
+
+:host-context(.dark) {
+	--glass-bg: rgba(20,20,20,0.36);
+	--glass-border: rgba(255,255,255,0.04);
+	--accent: #ef4444;
+}
+
+:host-context(.dark) .project-title { color: #ffffff; }
+:host-context(.dark) .project-desc { color: #d1d5db; }
+
+/* Accessibility: prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	.project-card,
+	.project-image,
+	.tech-chip,
+	.gradient-overlay,
+	.spotlight { transition: none !important; }
+	.project-card { transform: none !important; opacity: 1 !important; }
+}
+
+img { border-radius: 0.5rem; }
+
+/* PrimeNG skeleton styling in image area */
+.image-wrap p-skeleton,
+.image-wrap ::ng-deep p-skeleton {
+	border-radius: 0.5rem;
+}

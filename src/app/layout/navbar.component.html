@@ -3,17 +3,27 @@
     <a href="#home" (click)="navigateTo('home', $event)" class="brand font-bold tracking-wide text-xl">
       <span class="brand-first">SAKTHIS</span><span class="brand-last">HWARAN</span>
     </a>
-    <div class="hidden md:flex gap-8 items-center nav-links">
-      <a href="#home" (click)="navigateTo('home', $event)" [class.active]="active() === 'home'">Home</a>
-      <a href="#about" (click)="navigateTo('about', $event)" [class.active]="active() === 'about'">About</a>
-      <a href="#skills" (click)="navigateTo('skills', $event)" [class.active]="active() === 'skills'">Skills</a>
-      <a href="#projects" (click)="navigateTo('projects', $event)" [class.active]="active() === 'projects'">Projects</a>
-      <a href="#services" (click)="navigateTo('services', $event)" [class.active]="active() === 'services'">Services</a>
-      <a href="#contact" (click)="navigateTo('contact', $event)" [class.active]="active() === 'contact'">Contact</a>
-      <app-theme-toggle></app-theme-toggle>
-    </div>
-    <div class="md:hidden">
-      <button (click)="toggle()" pButton type="button" label="Menu" class="p-button-text"></button>
+    <div class="flex items-center gap-4">
+      <div class="hidden md:flex gap-8 items-center nav-links">
+        <a href="#home" (click)="navigateTo('home', $event)" [class.active]="active() === 'home'">Home</a>
+        <a href="#about" (click)="navigateTo('about', $event)" [class.active]="active() === 'about'">About</a>
+        <a href="#skills" (click)="navigateTo('skills', $event)" [class.active]="active() === 'skills'">Skills</a>
+        <a href="#projects" (click)="navigateTo('projects', $event)" [class.active]="active() === 'projects'">Projects</a>
+        <a href="#services" (click)="navigateTo('services', $event)" [class.active]="active() === 'services'">Services</a>
+        <a href="#contact" (click)="navigateTo('contact', $event)" [class.active]="active() === 'contact'">Contact</a>
+      </div>
+
+      <!-- Theme toggle always visible -->
+      <div class="flex items-center">
+        <app-theme-toggle></app-theme-toggle>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button (click)="toggle()" aria-label="Open navigation menu" class="p-button-text h-12 w-12 flex items-center justify-center">
+          <i class="pi pi-bars text-lg text-(--color-accent)"></i>
+        </button>
+      </div>
     </div>
   </div>
   @if (isOpen()) {

@@ -61,5 +61,13 @@ export const PROFILE: Profile = {
     'Team Collaboration',
     'Agile',
   ],
+  highlights: [
+    'Full Stack Development',
+    'REST API Development',
+    'Responsive UI',
+    'Cloud Integrations',
+    'Database Design',
+    'Performance Optimization',
+  ],
   projects: PROJECTS,
 };

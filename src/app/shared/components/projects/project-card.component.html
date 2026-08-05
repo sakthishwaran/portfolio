@@ -1,0 +1,35 @@
+<article class="project-card p-4 rounded-2xl shadow-md will-change-transform will-change-opacity" tabindex="0" role="article" aria-label="{{project.name}}">
+  <div class="image-wrap relative overflow-hidden rounded-lg mb-3 h-44">
+    @if (!imageLoaded) {
+      <p-skeleton class="w-full h-full" shape=""></p-skeleton>
+    }
+
+    <img
+      [src]="project.image"
+      alt="{{project.name}}"
+      title="{{project.name}}"
+      loading="lazy"
+      (error)="onImgError($event)"
+      (load)="onImgLoad()"
+      class="project-image w-full h-full object-cover transition-transform"
+    />
+
+    <div class="gradient-overlay pointer-events-none" aria-hidden="true"></div>
+    <div class="spotlight pointer-events-none" aria-hidden="true"></div>
+  </div>
+
+  <h3 class="project-title font-semibold text-lg mb-1 transition-colors">{{ project.name }}</h3>
+  <p class="project-desc text-sm mb-3 transition-colors">{{ project.description }}</p>
+
+  <div class="flex flex-wrap gap-2 mb-3 tech-list">
+    @for (t of project.technologies; track $index) {
+      <span class="tech-chip text-xs px-2 py-1 rounded">{{ t }}</span>
+    }
+  </div>
+
+  <!-- Buttons (optional) -->
+  <!-- <div class="flex gap-3">
+    <button pButton type="button" label="Live" class="p-button-outlined">Live</button>
+    <button pButton type="button" label="Repo" class="p-button-text">Repo</button>
+  </div> -->
+</article>

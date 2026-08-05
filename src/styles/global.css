@@ -83,3 +83,89 @@ a:hover { color: var(--link-hover); }
 /* Hero image partial reveal: start clipped and scale up when in view */
 .reveal .overflow-hidden img { transform: scale(1); clip-path: inset(0 0 50% 0); transition: clip-path .9s ease, transform .9s ease; }
 .reveal.in-view .overflow-hidden img { transform: scale(1.06); clip-path: inset(0 0 0% 0); box-shadow: 0 12px 40px rgba(239,35,60,0.08); }
+
+/* Premium card system (shared across Projects, About, Skills, Contact) */
+.premium-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem; /* rounded-3xl-ish */
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 30px rgba(15,23,42,0.06);
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+  transform-origin: center;
+  position: relative; /* enable pseudo-element glow */
+}
+
+.premium-card:hover, .premium-card:focus-within {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 48px rgba(15,23,42,0.12), 0 6px 18px rgba(239,68,68,0.04);
+  border-color: rgba(239,68,68,0.12);
+}
+
+.mini-card { padding: 0.75rem; }
+
+.tech-chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.35rem 0.75rem; font-weight: 600; font-size: 0.8125rem; line-height:1;
+  border-radius: 9999px; white-space: nowrap;
+  background: color-mix(in srgb, var(--color-primary, #1f2937) 6%, white 94%);
+  border: 1px solid color-mix(in srgb, var(--color-secondary, #6b7280) 18%, transparent);
+  color: var(--color-primary, #1f2937);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--color-primary, #1f2937) 6%, transparent);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: transform 260ms ease-out, border-color 260ms ease-out, background-color 260ms ease-out, color 260ms ease-out, box-shadow 260ms ease-out;
+}
+
+.tech-chip:hover, .tech-chip:focus { transform: translateY(-3px) scale(1.04); border-color: var(--color-accent); color: var(--color-accent); box-shadow: 0 10px 22px color-mix(in srgb, var(--color-accent, #ef4444) 10%, transparent); }
+
+.skill-fill {
+  height: 100%; border-radius: 9999px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-accent, #ef4444) 70%, transparent) 0%, color-mix(in srgb, var(--color-secondary, #6b7280) 40%, transparent) 100%);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-accent, #ef4444) 10%, transparent);
+  transition: width 900ms cubic-bezier(.2,.9,.2,1);
+}
+
+.glass-btn {
+  background: color-mix(in srgb, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.02) 50%);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.5rem; border-radius: 9999px; display:inline-flex; align-items:center; justify-content:center;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+.glass-btn:hover, .glass-btn:focus { transform: translateY(-4px) scale(1.04); border-color: var(--color-accent); box-shadow: 0 10px 30px color-mix(in srgb, var(--color-accent, #ef4444) 12%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-card, .tech-chip, .glass-btn, .skill-fill { transition: none !important; transform: none !important; }
+}
+
+/* Reusable card utility classes (alias to premium-card behavior)
+   Use these on any card to get project-card identical hover and focus behavior */
+.card-base { @apply ; }
+.card-glass { /* semantic alias for glass look */ }
+.card-transition { transition: transform 300ms ease-out, box-shadow 300ms ease-out, border-color 300ms ease-out; }
+.card-hover:hover, .card-hover:focus-within { transform: translateY(-8px) scale(1.02); }
+
+/* Floating glow pseudo element for cards */
+.card-base::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  box-shadow: 0 0 48px rgba(239,68,68,0); transition: box-shadow 300ms ease-out; z-index: 0;
+}
+.card-base:hover::after, .card-base:focus-within::after { box-shadow: 0 0 48px rgba(239,68,68,0.18); }
+
+/* Ensure premium-card also has the floating glow like project cards */
+.premium-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; box-shadow: 0 0 48px rgba(239,68,68,0); transition: box-shadow 300ms ease-out; z-index: 0; }
+.premium-card:hover::after, .premium-card:focus-within::after { box-shadow: 0 0 48px rgba(239,68,68,0.18); }
+
+/* Icon animations inside cards */
+.card-icon { display: inline-flex; align-items:center; justify-content:center; transition: transform 300ms ease-out, color 300ms ease-out; }
+.card-base:hover .card-icon, .card-base:focus-within .card-icon { transform: scale(1.1) rotate(3deg); color: var(--color-accent); }
+
+/* Ensure keyboard focus visible */
+.card-base:focus-within { outline: none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 12%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .card-base, .card-icon { transition: none !important; transform: none !important; }
+}

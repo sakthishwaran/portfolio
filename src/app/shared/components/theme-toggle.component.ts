@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
 import { ThemeService } from '../services/theme.service';
 
 @Component({
@@ -11,35 +10,34 @@ import { ThemeService } from '../services/theme.service';
     <button
       type="button"
       (click)="toggle()"
-      aria-label="Toggle theme"
-      class="relative inline-flex h-9 w-[72px] shrink-0 cursor-pointer items-center rounded-full bg-[rgba(239,35,60,0.07)] p-1 ring-1 ring-[rgba(239,35,60,0.18)] transition-all duration-300 hover:ring-[rgba(239,35,60,0.35)]"
+      aria-label="Toggle dark mode"
+      class="glass-btn focus:outline-none focus:ring-4 focus:ring-(--color-accent)/20"
+      [attr.aria-pressed]="theme.theme === 'dark'"
     >
-      <!-- Sun (left) -->
       <span
-        class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-300"
-        [ngClass]="theme.theme !== 'dark' ? 'bg-white shadow text-amber-500' : 'text-gray-400'"
+        class="transition-transform duration-300"
+        [class.rotate-180]="theme.theme === 'dark'"
+        aria-hidden="true"
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
-      </span>
-      <!-- Moon (right) -->
-      <span
-        class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-300"
-        [ngClass]="theme.theme === 'dark' ? 'bg-white shadow text-slate-700' : 'text-gray-400'"
-      >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
+        @if (theme.theme !== 'dark') {
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-(--color-accent)" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zM15.071 4.929a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM18 10a1 1 0 110 2h-1a1 1 0 110-2h1zM15.071 15.071a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 111.414-1.414l.707.707zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4.929 15.071a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM3 10a1 1 0 110 2H2a1 1 0 110-2h1zM4.93 4.929a1 1 0 011.414-1.414l.707.707A1 1 0 115.636 5.636l-.707-.707z" />
+          </svg>
+        }
+        @if (theme.theme === 'dark') {
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-(--color-accent)" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M17.293 13.293A8 8 0 116.707 2.707a7 7 0 1010.586 10.586z" />
+          </svg>
+        }
       </span>
     </button>
   `,
-
 })
 export class ThemeToggleComponent {
+  @HostBinding('class') hostClass = '';
   constructor(public theme: ThemeService) {}
   toggle() {
+    // animate briefly by toggling class (CSS handles rotation)
     this.theme.toggle();
   }
 }
